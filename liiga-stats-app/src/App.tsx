@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, Link } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import SkatersPage from "./pages/SkatersPage";
+import GoaliesPage from "./pages/GoaliesPage";
+import TeamsPage from "./pages/TeamsPage";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const padding = {
+    padding: 5,
+  };
 
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <Link style={padding} to="/">
+          Home
+        </Link>
+        <Link style={padding} to="/skaters">
+          Skaters
+        </Link>
+        <Link style={padding} to="/goalies">
+          Goalies
+        </Link>
+        <Link style={padding} to="/teams">
+          Teams
+        </Link>
+        <br /> <br />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Routes>
+        <Route index element={<HomePage />} />
+        <Route path="skaters" element={<SkatersPage />} />
+        <Route path="goalies" element={<GoaliesPage />} />
+        <Route path="teams" element={<TeamsPage />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
